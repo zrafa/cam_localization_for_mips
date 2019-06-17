@@ -1,9 +1,16 @@
 # cam_localization_for_mips
-Camera localization using apriltags port for mips with image adquisition
+Camera localization using latest apriltags port for mips with image adquisition
+
+2019. Alejandro Mora, Candelaria Alvarez, Rafael Zurita.
 
 This repository has a modified example application for apriltags 3.0, which takes a picture from linux webcam driver (/dev/video*), converts to jpeg, and then gets the camera localization using apriltags.
 
 There are no external dependencies, and the code is almost 100% in C language. It lets to test this prototype in embedded systems (no opencv, neither other huge libraries dependences).
+
+'Goal': After prototype is ready (hardware and software) it should be demostrated
+that the module consumes low power and it fits the 
+the response time requirements for robots navigation like Frankestito. It means,
+the correctness depends not only on the logical result but also the time it was delivered - failure to respond is as bad as the wrong response.
 
 The makefiles has hardcoded compiler mips instructions, for building the source code for MIPS architecture (big endian, openwrt Linux distribution).
 
