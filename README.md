@@ -24,7 +24,11 @@ There are several components:
 How to build
 ------------
 
+It is a little mess yet, but you will get the idea:
+
 ```
+# the global config is at config.h. For example: camera intrinsic parameters
+# edit example/config.h if you need to change them
 cd eigen-libreria-c++-portada-a-MIPS-usada-por-pose-c++/eigen-eigen-323c052e1731/demos/mix_eigen_and_c/
 # Instructions for eigen and mips : cat README.mips 
 # Set the PATH var to your mips-openwrt gcc compiler folder: 
@@ -34,9 +38,9 @@ cp foo.o foo.cpp foo.h ../../../../apriltags_mips/example/
 cd ../../../../apriltags_mips/
 cd example/jpeg-9c/
 make
-cd ..
-make
-cp ../../eigen-libreria-c++-portada-a-MIPS-usada-por-pose-c++/eigen-eigen-323c052e1731/demos/mix_eigen_and_c/foo.o example/
+cd ../../../
+cd apriltags_mips/example/
+cp ../../eigen-libreria-c++-portada-a-MIPS-usada-por-pose-c++/eigen-eigen-323c052e1731/demos/mix_eigen_and_c/foo.o .   # it must be copied under example/ folder
 make
 ```
 
