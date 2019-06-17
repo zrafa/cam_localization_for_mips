@@ -39,7 +39,8 @@ either expressed or implied, of the Regents of The University of Michigan.
 
 #include "apriltag.h"
 #include "tag36h11.h"
-/*#include "tag25h9.h"
+/* RAFA: quitamos todos estas variantes que no utilizaremos
+#include "tag25h9.h"
 #include "tag16h5.h"
 #include "tagCircle21h7.h"
 #include "tagCircle49h12.h"
@@ -56,12 +57,11 @@ either expressed or implied, of the Regents of The University of Michigan.
 
 
 //RAFA
-
-//RAFA
 #include "common/homography.h"
 #include "foo.h"
-
+#include "config.h"
 #include "v4l2.h"
+
 
 // Invoke:
 //
@@ -152,9 +152,7 @@ int main(int argc, char *argv[])
 	image_u8_t *im = NULL;
 	im = pjpeg_to_u8_baseline(pjpeg);
 
-	printf("antes del for\n");
     for (int iter = 0; iter < maxiters; iter++) {
-	printf("despues del for\n");
 
         int total_quads = 0;
         int total_hamm_hist[hamm_hist_max];
@@ -164,14 +162,14 @@ int main(int argc, char *argv[])
         if (maxiters > 1)
             printf("iter %d / %d\n", iter + 1, maxiters);
 
-	printf("antes del for\n");
         for (int input = 0; input < zarray_size(inputs); input++) {
-	printf("despues del for\n");
 
             int hamm_hist[hamm_hist_max];
             memset(hamm_hist, 0, sizeof(hamm_hist));
 
-/*
+/* RAFA: quito esta porcion de codigo ya que la foto la obtenemos 
+ *       desde la camara
+ *
             char *path;
             zarray_get(inputs, input, &path);
             if (!quiet)
@@ -236,13 +234,10 @@ int main(int argc, char *argv[])
 
             zarray_t *detections = apriltag_detector_detect(td, im);
 
-		printf("POR AQUI\n");
             for (int i = 0; i < zarray_size(detections); i++) {
                 apriltag_detection_t *det;
                 zarray_get(detections, i, &det);
 
-                    printf("detection %3d: id (%2dx%2d)-%-4d, hamming %d, margin %8.3f\n",
-                           i, det->family->nbits, det->family->h, det->id, det->hamming, det->decision_margin);
                 if (!quiet)
                     printf("detection %3d: id (%2dx%2d)-%-4d, hamming %d, margin %8.3f\n",
                            i, det->family->nbits, det->family->h, det->id, det->hamming, det->decision_margin);
@@ -251,23 +246,22 @@ int main(int argc, char *argv[])
                 // total_hamm_hist[det->hamming]++;
 
 
-// RAFA
-double width = 639;
-double height = 479;
-double cx = width/2;
-double cy = height/2;
-double fx = 816;
-double fy = 816;
-// double tagsize=0.0935;
-double tagsize=0.05;
+		// RAFA
+		/* configuracion en config.h */
+		// double width = FRAME_WIDTH;
+		// double height = FRAME_HEIGHT;
+		double width = CAM_WIDTH;
+		double height = CAM_HEIGHT;
+		// double cx = FRAME_WIDTH/2;
+		// double cy = FRAME_HEIGHT/2;
+		double cx = width/2;
+		double cy = height/2;
+		double fx = FOCAL_FX;
+		double fy = FOCAL_FY;
+		// double tagsize=0.0935;
+		double tagsize=TAGSIZE;	 /* en centimetros */
 
-
-
-int j,k;
-
-        for (int i = 0; i < zarray_size(detections); i++) {
-                apriltag_detection_t *det;
-                zarray_get(detections, i, &det);
+		int j,k;
 
                 matd_t *M = homography_to_pose(det->H, -fx, fy, cx, cy);
                 double scale = tagsize / 2.0;
@@ -283,17 +277,15 @@ int j,k;
                 }
 
 
- foo(MATD_EL(M,0,0), MATD_EL(M,0,1), MATD_EL(M,0,2), MATD_EL(M,1,0), MATD_EL(M,1,1), MATD_EL(M,1,2), MATD_EL(M,2,0), MATD_EL(M,2,1), MATD_EL(M,2,2),
-            MATD_EL(M,0,3), MATD_EL(M,1,3), MATD_EL(M,2,3));
+ 		foo(MATD_EL(M,0,0), MATD_EL(M,0,1), MATD_EL(M,0,2), MATD_EL(M,1,0), MATD_EL(M,1,1), MATD_EL(M,1,2), MATD_EL(M,2,0), MATD_EL(M,2,1), MATD_EL(M,2,2),
+            		MATD_EL(M,0,3), MATD_EL(M,1,3), MATD_EL(M,2,3));
 
-       // }
-// FIN RAFA
-
+		// FIN RAFA
 
 
 
 
-            }
+
 
             apriltag_detections_destroy(detections);
 
