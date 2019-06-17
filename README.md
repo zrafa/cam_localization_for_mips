@@ -5,6 +5,13 @@ This repository has a modified example application for apriltags 3.0, which take
 
 THe makefiles has hardcoded compiler mips instructions, for building the source code for MIPS architecture (big endian, openwrt Linux distribution).
 
+The are several components:
+- apriltags 3.0
+- the example apriltags_demo modified
+- the lib jpeg9 library
+- a module (v4l2) to use the linux uvc driver for getting pictures from webcam
+- eigen library with Makefiles for MIPS
+
 How to build
 ------------
 
