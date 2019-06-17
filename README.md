@@ -5,9 +5,14 @@ Camera localization using latest apriltags port for mips with image adquisition
 
 This repository has a modified example application for apriltags 3.0, which takes a picture from linux webcam driver (/dev/video*), converts to jpeg, and then gets the camera localization using apriltags.
 
+
 There are no external dependencies, and the code is almost 100% in C language. It lets to test this prototype in embedded systems (no opencv, neither other huge libraries dependences).
 
-**Goal**: After prototype is ready (hardware and software) it should be demostrated
+**Goal**: Design and verify a low power module device which reports
+the camera localization at a indoor environment (using artificial tags). When working the module will find the tag automatically, and then will report its location.
+The software will run in a MIPS computer which also controls a servo and a 
+mounted camera on servo. 
+After prototype is ready (hardware and software) it should be demostrated
 that the module consumes low power and it fits the 
 the response time requirements for robots navigation like Frankestito. It means,
 the correctness depends not only on the logical result but also the time it was delivered - failure to respond is as bad as the wrong response.
