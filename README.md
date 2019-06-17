@@ -3,13 +3,15 @@ Camera localization using apriltags port for mips with image adquisition
 
 This repository has a modified example application for apriltags 3.0, which takes a picture from linux webcam driver (/dev/video*), converts to jpeg, and then gets the camera localization using apriltags and few extra source code lines.
 
-THe makefiles has hardcoded compiler mips instructions, for building the source code for MIPS architecture (big endian, openwrt Linux distribution).
+There are no external dependencies, and the code is almost 100% in C language. It lets to test this prototype in embedded systems (no opencv, neither other huge libraries dependences).
+
+The makefiles has hardcoded compiler mips instructions, for building the source code for MIPS architecture (big endian, openwrt Linux distribution).
 
 The are several components:
 - apriltags 3.0
-- the example apriltags_demo modified
+- the example apriltags_demo modified, which reports camera localization in a 2d world
 - the lib jpeg9 library
-- a module (v4l2) to use the linux uvc driver for getting pictures from webcam
+- a module (v4l2) for using the linux uvc driver for getting pictures from webcam
 - eigen library with Makefiles for MIPS
 
 How to build
