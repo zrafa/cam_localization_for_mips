@@ -13,6 +13,6 @@
 /* para apriltag_demo camera localization */
 #define CAM_WIDTH 639	/* lo obtuvo Ale */
 #define CAM_HEIGHT 479	/* lo obtuvo Ale */
-#define FOCAL_FX 816	/* lo obtuvo Ale */
-#define FOCAL_FY 816	/* lo obtuvo Ale */
+#define FOCAL_FX 390	/* lo obtuvo Ale 816 */
+#define FOCAL_FY 390	/* lo obtuvo Ale 816 */
 #define TAGSIZE 0.05	/* en centimetros */

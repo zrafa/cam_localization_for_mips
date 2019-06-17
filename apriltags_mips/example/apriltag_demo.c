@@ -250,12 +250,10 @@ int main(int argc, char *argv[])
 		/* configuracion en config.h */
 		// double width = FRAME_WIDTH;
 		// double height = FRAME_HEIGHT;
-		double width = CAM_WIDTH;
-		double height = CAM_HEIGHT;
-		// double cx = FRAME_WIDTH/2;
-		// double cy = FRAME_HEIGHT/2;
-		double cx = width/2;
-		double cy = height/2;
+		// double width = CAM_WIDTH;
+		// double height = CAM_HEIGHT;
+		double cx = FRAME_WIDTH/2;
+		double cy = FRAME_HEIGHT/2;
 		double fx = FOCAL_FX;
 		double fy = FOCAL_FY;
 		// double tagsize=0.0935;
