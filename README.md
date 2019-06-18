@@ -8,7 +8,9 @@ This repository has a modified example application for apriltags 3.0, which take
 
 There are no external dependencies, and the code is almost 100% in C language. It lets to test this prototype in embedded systems (no opencv, neither other huge libraries dependences).
 
-**Goal**: ```Design, build and verify a low power consumption module device which reports
+**Goal**: 
+```
+Design, build and verify a low power consumption module device which reports
 the camera localization at a indoor environment (using artificial tags). When working the module will find the tag automatically, and then will report its location.
 The software will run in a MIPS computer which also controls a servo and a 
 mounted camera on servo. 
