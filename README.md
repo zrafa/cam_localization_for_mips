@@ -8,6 +8,10 @@ This repository has a modified example application for apriltags 3.0, which take
 
 There are no external dependencies, and the code is almost 100% in C language. It lets to test this prototype in embedded systems (no opencv, neither other huge libraries dependences).
 
+<div class="extended-markdown tip border rounded-1 mb-4 p-3 border-blue bg-blue-light f5">
+<p><strong>Tip:</strong> When viewing a conversation, you can automatically quote text in a comment by highlighting the text, then typing <code>r</code>. You can quote an entire comment by clicking <span class="octicon octicon-kebab-horizontal" aria-label="The horizontal kebab icon" title="The horizontal kebab icon"><svg version="1.1" width="13" height="16" viewBox="0 0 13 16" class="octicon octicon-kebab-horizontal" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg></span>, then <strong>Quote reply</strong>. For more information about keyboard shortcuts, see &quot;<a href="/en/articles/using-keyboard-shortcuts/">Using keyboard shortcuts</a>.&quot;</p>
+</div>
+
 **Goal**: 
 ```
 Design, build and verify a low power consumption module device which reports
