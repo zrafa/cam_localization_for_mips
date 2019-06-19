@@ -49,38 +49,60 @@ void wRo_to_euler(const Eigen::Matrix3d& wRo, double& yaw, double& pitch, double
 
 
 void foo(double m0, double m1, double m2, double m3, double m4, double m5, double m6, double m7, double m8, double t0, double t1, double t2) {
-    float r_x =0, r_y=0, r_z=0;
-    Eigen::Vector3d translation;
-    Eigen::Matrix3d m;
-    Eigen::Vector3f eulerAngle;
 
-    translation << t0, t1, t2;
-    m << (-1)*m0, m1, m2, m3, (-1)*m4, (-1)*m5, (-1)*m6, m7, m8;
-    std::cout << "matrix:" << m << "\n";
+	float r_x =0, r_y=0, r_z=0;
+	Eigen::Vector3d translation;
+	Eigen::Matrix3d m;
+	// Eigen::Vector3f eulerAngle;
 
-   Eigen::Matrix3d F;
-    F <<
-      1, 0,  0,
-      0,  -1,  0,
-      0,  0,  1;
-    Eigen::Matrix3d fixed_rot = F*m;
-    double yaw, pitch, roll;
-    // wRo_to_euler(m, yaw, pitch, roll);
+	translation << t0, t1, t2;
+	m << (-1)*m0, m1, m2, m3, (-1)*m4, (-1)*m5, (-1)*m6, m7, m8;
 
-    wRo_to_euler(fixed_rot, yaw, pitch, roll);
+	std::cout << "matrix:" << m << "\n";
 
-     std::cout   << "  matrix2=" << fixed_rot << "\n";
+	Eigen::Matrix3d F;
+	F <<
+		1,   0,  0,
+		0,  -1,  0,
+		0,   0,  1;
 
-     std::cout   << "  yaw=" << (yaw*57.2958)  // convertido de radianes a grados
+	Eigen::Matrix3d fixed_rot = F*m;
+	double yaw, pitch, roll;
+	// wRo_to_euler(m, yaw, pitch, roll);
+
+	wRo_to_euler(fixed_rot, yaw, pitch, roll);
+
+	std::cout   << "  matrix2=" << fixed_rot << "\n";
+
+	double distancia = (translation.norm()*100);
+        double X = ((cos(pitch)*translation(0))-(sin(pitch)*translation(2)))*100;
+        double Y = ((cos(pitch)*translation(1))-(sin(pitch)*translation(2)))*100;
+        double Z = ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100;
+	double XXX = 50 + X;
+	double YYY = 50 + X;
+	// double YYY = distancia*(sin(grados));
+
+	std::cout   << "  yaw=" << (yaw*57.2958)  // convertido de radianes a grados
          << ", pitch=" << (pitch*57.2958)
          << ", roll=" << (roll*57.2958) << "\n";
 
-      std::cout << "  distance=" << (translation.norm()*100) // convertido a centimentros
+	std::cout << "  distance=" << (translation.norm()*100) // convertido a centimentros
          << " cm, "
          << "\n"
          << "  x=" << (translation(0)*100)
          << ", y=" << (translation(1)*100)
          << ", z=" << (translation(2)*100)
+//	 << "  X'=" << XX
+//         << ", Y'=" << YY
+//	 << "  X''=" << XXX
+ //        << ", Y''=" << YYY
+         // << "  X'=" << ((cos(pitch)*translation(0))-(sin(pitch)*translation(2)))*100
+         << "  X'=" << X
+         << "  Y'=" << Y
+         << ", Z'=" << ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100
+	 << "\n XXX=" << XXX
+	 << "\n YYY=" << YYY
+
          << "\n";
 
 
