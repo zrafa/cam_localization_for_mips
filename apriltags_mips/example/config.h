@@ -15,4 +15,5 @@
 #define CAM_HEIGHT 479	/* lo obtuvo Ale */
 #define FOCAL_FX 390	/* lo obtuvo Ale 816 */
 #define FOCAL_FY 390	/* lo obtuvo Ale 816 */
-#define TAGSIZE 0.054	/* en centimetros */
+// #define TAGSIZE 0.054	/* en centimetros */
+#define TAGSIZE 5.4	/* en centimetros */

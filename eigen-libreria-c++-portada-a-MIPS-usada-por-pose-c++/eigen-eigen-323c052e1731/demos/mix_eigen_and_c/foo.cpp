@@ -104,11 +104,9 @@ void foo(double m0, double m1, double m2, double m3, double m4, double m5, doubl
 
 
 	 printf("\nXXX=%f,   YYY=%f\n", *XXX, *YYY);
-	*YYY *= (-1);
-	if (((*YYY) < 5) && (((*XXX) < -5) || ((*XXX) > 5)) )
-		*YYY += (-14); /* RAFA: NUMERO MAGICO???????????!!!! */
+	// if (((*YYY) < 5) && (((*XXX) < -5) || ((*XXX) > 5)) )
+	// 	*YYY += (-14); /* RAFA: NUMERO MAGICO???????????!!!! */
 
-	*XXX += 50;
 
 	// double YYY = distancia*(sin(grados));
 
@@ -127,26 +125,19 @@ void foo(double m0, double m1, double m2, double m3, double m4, double m5, doubl
 //	 << "  X''=" << XXX
  //        << ", Y''=" << YYY
          // << "  X'=" << ((cos(pitch)*translation(0))-(sin(pitch)*translation(2)))*100
-         << "  X'=" << X
-         << "  Y'=" << Y
-         << ", Z'=" << ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100
+        // << "  X'=" << X
+        // << "  Y'=" << Y
+        // << ", Z'=" << ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100
 
          << "\n";
 
-	 printf("\nXXX=%f,   YYY=%f\n", *XXX, *YYY);
+	*YYY *= (-1);
+	*XXX += 50;
+	printf("\nX=%i, Y=%i\n", (int) *XXX, (int) *YYY);
+
 	free(XXX);
 	free(YYY);
 
- //   std::cout << "m2 =" << m ;
-//    eulerAngle = m.eulerAngles(0,1,2);
-
-//    printf("ANGULO0=%f\n", eulerAngle[0]);
-//    printf("ANGULO1=%f\n", eulerAngle[1]);
-//    printf("ANGULO2=%f\n", eulerAngle[2]);
-
-//    printf("ANGULO0=%f\n", eulerAngle[0] * 180 / M_PI);
-//    printf("ANGULO1=%f\n", eulerAngle[1] * 180 / M_PI);
-//    printf("ANGULO2=%f\n", eulerAngle[2] * 180 / M_PI);
 }
 
 } /* extern "C" */
