@@ -9,6 +9,7 @@
 #include <Eigen/Geometry>
 
 #include <Eigen/Core>
+#include <stdio.h>
 
 using namespace Eigen;
 
@@ -47,6 +48,13 @@ void wRo_to_euler(const Eigen::Matrix3d& wRo, double& yaw, double& pitch, double
 
 
 
+void rotacion(double x, double y, double *rx, double *ry, double angulo)
+{
+ angulo = (PI*angulo)/180.0;
+ *rx = x*cos(angulo) - y*sin(angulo);
+ *ry = x*sin(angulo) + y*cos(angulo);
+}
+
 
 void foo(double m0, double m1, double m2, double m3, double m4, double m5, double m6, double m7, double m8, double t0, double t1, double t2) {
 
@@ -74,12 +82,34 @@ void foo(double m0, double m1, double m2, double m3, double m4, double m5, doubl
 
 	std::cout   << "  matrix2=" << fixed_rot << "\n";
 
-	double distancia = (translation.norm()*100);
-        double X = ((cos(pitch)*translation(0))-(sin(pitch)*translation(2)))*100;
-        double Y = ((cos(pitch)*translation(1))-(sin(pitch)*translation(2)))*100;
-        double Z = ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100;
-	double XXX = 50 + X;
-	double YYY = 50 + X;
+	// double distancia = (translation.norm()*100);
+        // double x = (translation(0)*100);
+        // double z = (translation(2)*100);
+        // double X = ((cos(pitch)*translation(0))-(sin(pitch)*translation(2)))*100;
+        // double Y = ((cos(pitch)*translation(1))-(sin(pitch)*translation(2)))*100;
+        // double Z = ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100;
+
+	double distancia = (translation.norm());
+        double x = (translation(0));
+        double z = (translation(2));
+        double X = ((cos(pitch)*translation(0))-(sin(pitch)*translation(2)));
+        double Y = ((cos(pitch)*translation(1))-(sin(pitch)*translation(2)));
+        double Z = ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)));
+	double *XXX = (double *) malloc(sizeof(double));
+	double *YYY = (double *) malloc(sizeof(double));
+
+	// rotacion(X, Z, XXX, YYY, (pitch*57.2958));
+	// rotacion(X, Z, XXX, YYY, (pitch));
+	rotacion((-1)*x, z, XXX, YYY, (pitch*57.2958));
+
+
+	 printf("\nXXX=%f,   YYY=%f\n", *XXX, *YYY);
+	*YYY *= (-1);
+	if (((*YYY) < 5) && (((*XXX) < -5) || ((*XXX) > 5)) )
+		*YYY += (-14); /* RAFA: NUMERO MAGICO???????????!!!! */
+
+	*XXX += 50;
+
 	// double YYY = distancia*(sin(grados));
 
 	std::cout   << "  yaw=" << (yaw*57.2958)  // convertido de radianes a grados
@@ -100,11 +130,12 @@ void foo(double m0, double m1, double m2, double m3, double m4, double m5, doubl
          << "  X'=" << X
          << "  Y'=" << Y
          << ", Z'=" << ((sin(pitch)*translation(0))+(cos(pitch)*translation(2)))*100
-	 << "\n XXX=" << XXX
-	 << "\n YYY=" << YYY
 
          << "\n";
 
+	 printf("\nXXX=%f,   YYY=%f\n", *XXX, *YYY);
+	free(XXX);
+	free(YYY);
 
  //   std::cout << "m2 =" << m ;
 //    eulerAngle = m.eulerAngles(0,1,2);
