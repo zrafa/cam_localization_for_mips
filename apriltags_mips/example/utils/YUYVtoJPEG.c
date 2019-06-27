@@ -63,6 +63,9 @@ unsigned long int YUYVtoJPEG(unsigned char * input, const int width, const int h
 
     memcpy(output, outbuffer, outlen);
 
+    // Agrego RAFA
+    free(outbuffer);
+
     return  outlen;
 }
 

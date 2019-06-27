@@ -132,6 +132,9 @@ int main(int argc, char *argv[])
 
     // RAFA video
 	v4l2_init();
+    // RAFA
+    while (1) {
+        printf("\nPASO\n");
 	mainloop();
 
 	int size_yuv_to_jpeg;
@@ -223,7 +226,12 @@ int main(int argc, char *argv[])
                 pjpeg_destroy(pjpeg);
             }
 */
+
+
 		}
+
+		// RAFA AGREGO
+                pjpeg_destroy(pjpeg);
 
             if (im == NULL) {
                 printf("couldn't load \n");
@@ -285,6 +293,7 @@ int main(int argc, char *argv[])
 
 
 
+        printf("Summary 4\n");
             apriltag_detections_destroy(detections);
 
             if (!quiet) {
@@ -306,10 +315,13 @@ int main(int argc, char *argv[])
 
             printf("\n");
 
-            image_u8_destroy(im);
+        printf("Summary 3\n");
+            // RAFA image_u8_destroy(im);
         }
 
 
+           // RAFA image_u8_destroy(im);
+           image_u8_destroy(im);
         printf("Summary\n");
 
         printf("hamm ");
@@ -321,6 +333,11 @@ int main(int argc, char *argv[])
         printf("\n");
 
     }
+  
+  printf("ANTES DE SALIR\n");
+	fflush(0);
+  
+  } // RAFA fin del while (1) {
 
     // don't deallocate contents of inputs; those are the argv
     apriltag_detector_destroy(td);
