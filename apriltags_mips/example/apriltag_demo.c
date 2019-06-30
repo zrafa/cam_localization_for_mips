@@ -130,11 +130,17 @@ int main(int argc, char *argv[])
     const int hamm_hist_max = 10;
 
 
+    int c;
+    char b;
     // RAFA video
 	v4l2_init();
     // RAFA
-    while (1) {
-        printf("\nPASO\n");
+    // RAFA while (1) {
+	
+// RAFA  	c = 0;
+// RAFA 	while ( c != 1 )
+// RAFA 		c = scanf("%c", &b, 1);
+
 	mainloop();
 
 	int size_yuv_to_jpeg;
@@ -276,11 +282,13 @@ int main(int argc, char *argv[])
                 MATD_EL(M, 1, 3) *= scale;
                 MATD_EL(M, 2, 3) *= scale ;
 
+/*
                 for (k=0;k<=3;k++) {
                         for (j=0;j<=3;j++)
                                 printf("[%i-%i]=%f ",k,j,MATD_EL(M,k,j));
                         printf("\n");
                 }
+*/
 
 
  		foo(MATD_EL(M,0,0), MATD_EL(M,0,1), MATD_EL(M,0,2), MATD_EL(M,1,0), MATD_EL(M,1,1), MATD_EL(M,1,2), MATD_EL(M,2,0), MATD_EL(M,2,1), MATD_EL(M,2,2),
@@ -293,7 +301,7 @@ int main(int argc, char *argv[])
 
 
 
-        printf("Summary 4\n");
+        // RAFA printf("Summary 4\n");
             apriltag_detections_destroy(detections);
 
             if (!quiet) {
@@ -310,34 +318,34 @@ int main(int argc, char *argv[])
 
             double t =  timeprofile_total_utime(td->tp) / 1.0E3;
             total_time += t;
-            printf("%12.3f ", t);
-            printf("%5d", td->nquads);
+            // RAFA printf("%12.3f ", t);
+            // RAFA printf("%5d", td->nquads);
 
-            printf("\n");
+            // RAFA printf("\n");
 
-        printf("Summary 3\n");
+        // RAFA printf("Summary 3\n");
             // RAFA image_u8_destroy(im);
         }
 
 
            // RAFA image_u8_destroy(im);
            image_u8_destroy(im);
-        printf("Summary\n");
+        // RAFA printf("Summary\n");
 
-        printf("hamm ");
+        // RAFA printf("hamm ");
 
-        for (int i = 0; i < hamm_hist_max; i++)
-            printf("%5d ", total_hamm_hist[i]);
-        printf("%12.3f ", total_time);
-        printf("%5d", total_quads);
-        printf("\n");
+        // RAFA for (int i = 0; i < hamm_hist_max; i++)
+        // RAFA     printf("%5d ", total_hamm_hist[i]);
+        // RAFA printf("%12.3f ", total_time);
+        // RAFA printf("%5d", total_quads);
+        // RAFA printf("\n");
 
     }
   
-  printf("ANTES DE SALIR\n");
+  // RAFA printf("ANTES DE SALIR\n");
 	fflush(0);
   
-  } // RAFA fin del while (1) {
+  // RAFA } // RAFA fin del while (1) {
 
     // don't deallocate contents of inputs; those are the argv
     apriltag_detector_destroy(td);
