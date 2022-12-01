@@ -4,11 +4,11 @@
 
 /**********************************************************************
 Protocolo de mensajes para comunicarse con el motor:
-H10 (llevar motor hastra la posicion 10)
-F05 (avanzar 5 pasos)
-B05 (retroceder 5 pasos)
-GET (que devuelva un int con la posicion actual del motor)
-RES (para hacer el INIT a la posicion 00)
+H10 (llevar motor hastra la posicion grado 10)
+F05 (avanzar 5 grados)
+B05 (retroceder 5 grados)
+GET (que devuelva un int con la posicion del grado actual del motor)
+RES (para hacer el INIT a la posicion grado 0)
  **********************************************************************/
 
 char cadena[4];
