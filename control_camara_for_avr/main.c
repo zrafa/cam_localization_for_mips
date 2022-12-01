@@ -13,7 +13,7 @@ RES (para hacer el INIT a la posicion grado 0)
 
 char cadena[4];
 
-
+/* Convierte cadena a entero*/
 int string_to_int(char *posicion){
 	int i=0;
 	int salida = 0;
@@ -35,6 +35,7 @@ int string_to_int(char *posicion){
 	return salida;
 }
 
+/* Convierte entero a cadena*/
 char* int_to_string(int posicion){
 	if (posicion==0){
 		cadena[0]='0';
@@ -60,12 +61,10 @@ char* int_to_string(int posicion){
 }
 
 int main(void){
-
 	serial_init();
     motor_init();
     serial_put_str("OK\n");
 	char* aux;
-
     
     char c,d,u; /* centena decena unidad*/
     int pos=0, pos_actual;

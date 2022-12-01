@@ -2,10 +2,6 @@
 #include <stdio.h>
 
 
-/* Completar la estructura de datos para que se superponga a los registros
-   del periferico de hardware del USART del atmega328, segun sugerido
-   en el apunte */
-
 typedef struct
 {
     uint8_t status_control_a;    /* ucsr0a USART Control and Status A */
